@@ -2,7 +2,7 @@ name: Deploy VitePress site to Pages
 
 on:
   push:
-    branches: [main]  # 将 master 修改为 main
+    branches: [main]
 
 permissions:
   contents: read
@@ -38,10 +38,9 @@ jobs:
         run: |
           pnpm run docs:build
           touch .nojekyll
-      - name: Upload artifact
-        uses: actions/upload-artifact@v2  # 使用 v2 版本
+      - name: Upload artifact to GitHub Pages
+        uses: actions/upload-pages-artifact@v3  # 使用最新版本上传构建产物
         with:
-          name: vitepress-build
           path: .vitepress/dist
 
   deploy:
@@ -54,4 +53,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2  # 使用 v2 版本
+        uses: actions/deploy-pages@v3  # 使用最新版本部署到 Pages
