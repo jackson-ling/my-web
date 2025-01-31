@@ -43,7 +43,7 @@ jobs:
           pnpm run docs:build  # 启动项目
           touch .nojekyll  # 通知 GitHub Pages 不要使用 Jekyll 处理这个站点
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2  # 上传构建产物
+        uses: actions/upload-pages-artifact@v2  # 更新为 v2 版本
         with:
           path: .vitepress/dist  # 指定上传的路径，当前是根目录，如果是 docs 需要加 docs/ 的前缀
 
