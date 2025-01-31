@@ -2,7 +2,10 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-        base: '/docs-demo/',
+   head: [
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }]
+  ],
+  base: '/docs-demo/',
   title: "jackson凌's site",
   description: "A VitePress Site",
   themeConfig: {
