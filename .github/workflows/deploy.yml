@@ -41,7 +41,7 @@ jobs:
           touch .nojekyll  # 告诉 GitHub Pages 不用 Jekyll 处理
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2  # 上传构建产物
+        uses: actions/upload-pages-artifact@v1  # 更新为v1，避免使用废弃版本
         with:
           path: .vitepress/dist  # 确保指向正确的构建目录
 
