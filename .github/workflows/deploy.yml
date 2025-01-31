@@ -39,9 +39,9 @@ jobs:
           pnpm run docs:build
           touch .nojekyll
       - name: List build output
-        run: ls -alh .vitepress/dist  # 确保构建产物生成在正确路径
+        run: ls -alh .vitepress/dist  # 确保路径无误
       - name: Upload artifact to GitHub Pages
-        uses: actions/upload-pages-artifact@v2  # 使用正确版本上传构建产物
+        uses: actions/upload-pages-artifact@v2  # 使用最新的上传动作
         with:
           path: .vitepress/dist  # 确保上传正确路径
 
