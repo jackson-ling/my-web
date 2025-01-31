@@ -40,8 +40,8 @@ jobs:
           pnpm run docs:build  # 启动构建
           touch .nojekyll  # 告诉 GitHub Pages 不用 Jekyll 处理
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1  # 使用 v1 版本，避免废弃
+      - name: Upload build to GitHub Pages
+        uses: actions/upload-pages-artifact@v2  # 使用最新的上传动作
         with:
           path: .vitepress/dist  # 指向构建目录
 
@@ -55,4 +55,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2  # 使用 GitHub Pages 部署动作
+        uses: actions/deploy-pages@v2  # 使用最新的 GitHub Pages 部署动作
