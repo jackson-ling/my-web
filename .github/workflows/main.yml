@@ -39,9 +39,10 @@ jobs:
           pnpm run docs:build
           touch .nojekyll
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2  # 使用v2版本
+        uses: actions/upload-artifact@v2  # 使用 v2 版本
         with:
-          path: .vitepress/dist  # 构建产物路径
+          name: vitepress-build
+          path: .vitepress/dist
 
   deploy:
     environment:
@@ -53,4 +54,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2  # 使用v2版本
+        uses: actions/deploy-pages@v2  # 使用 v2 版本
