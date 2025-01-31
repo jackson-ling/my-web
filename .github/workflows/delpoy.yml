@@ -39,11 +39,11 @@ jobs:
           pnpm run docs:build
           touch .nojekyll
       - name: List build output
-        run: ls -alh .vitepress/dist
+        run: ls -alh .vitepress/dist  # 确保路径无误
       - name: Upload artifact to GitHub Pages
-        uses: actions/upload-pages-artifact@v2  # 使用最新的上传动作
+        uses: actions/upload-pages-artifact@v3  # 最新版本的上传动作，确保没有引用旧的 upload-artifact
         with:
-          path: .vitepress/dist  # 确保上传正确的构建路径
+          path: .vitepress/dist
 
   deploy:
     environment:
@@ -55,4 +55,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2  # 确保使用最新版本部署
+        uses: actions/deploy-pages@v3  # 最新版本的部署动作
