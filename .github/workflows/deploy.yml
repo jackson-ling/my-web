@@ -1,33 +1,58 @@
-name: Deploy VitePress to GitHub Pages
+name: Deploy VitePress site to Pages
 
 on:
   push:
-    branches:
-      - main  # 根据你的需求修改分支名称
+    branches: [main]  # 将 master 修改为 main
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # 如果未启用 lastUpdated，则不需要
+          
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8.6.12  # 使用指定版本的 pnpm
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '16'  # 根据你的项目需求设置 Node.js 版本
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18  # 使用 Node.js 18
+          
+      - name: Install dependencies
+        run: pnpm install  # 安装项目依赖
 
-    - name: Install dependencies
-      run: |
-        npm install
+      - name: Build with VitePress
+        run: |
+          pnpm run docs:build  # 启动构建
+          touch .nojekyll  # 告诉 GitHub Pages 不用 Jekyll 处理
 
-    - name: Build the project
-      run: |
-        npm run docs:build
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2  # 上传构建产物
+        with:
+          path: .vitepress/dist  # 确保指向正确的构建目录
 
-    - name: Deploy to GitHub Pages
-      uses: JamesIves/github-pages-deploy-action@v4
-      with:
-        branch: gh-pages  # 部署到 gh-pages 分支
-        folder: .vitepress/dist  # 确保使用正确的路径
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}  # 获取部署页面 URL
+    needs: build  # 确保在 build 完成后执行部署
+    runs-on: ubuntu-latest
+    name: Deploy
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2  # 使用 GitHub Pages 部署动作
