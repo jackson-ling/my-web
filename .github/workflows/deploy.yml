@@ -17,7 +17,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v3
         with:
           fetch-depth: 0  # 如果未启用 lastUpdated，则不需要
@@ -27,7 +27,7 @@ jobs:
         with:
           version: 8.6.12  # 使用指定版本的 pnpm
 
-      - name: Setup Node
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18  # 使用 Node.js 18
@@ -41,9 +41,9 @@ jobs:
           touch .nojekyll  # 告诉 GitHub Pages 不用 Jekyll 处理
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1  # 更新为v1，避免使用废弃版本
+        uses: actions/upload-pages-artifact@v1  # 使用 v1 版本，避免废弃
         with:
-          path: .vitepress/dist  # 确保指向正确的构建目录
+          path: .vitepress/dist  # 指向构建目录
 
   deploy:
     environment:
