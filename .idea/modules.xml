@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../docs-demo/.idea/docs-demo.iml" filepath="$PROJECT_DIR$/../docs-demo/.idea/docs-demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/myweb.iml" filepath="$PROJECT_DIR$/.idea/myweb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../vitepress-tutorial/.idea/vitepress-tutorial.iml" filepath="$PROJECT_DIR$/../vitepress-tutorial/.idea/vitepress-tutorial.iml" />
+    </modules>
+  </component>
+</project>

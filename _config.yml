@@ -1,0 +1,26 @@
+title: "文档演示"
+description: "一个用 Jekyll 搭建的演示文档"
+theme: jekyll-theme-primer
+
+# 设置项目的 Markdown 文件路径（一般为当前目录）
+source: .
+destination: ./_site
+
+# 开启插件（如果需要，可以添加更多插件）
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# 构建时忽略某些文件或文件夹
+exclude:
+  - node_modules
+  - .cache
+
+# URL 设置
+baseurl: "" # 如果项目部署在子路径中，例如 /myweb，填写 /myweb
+url: "https://your-github-username.github.io"
+
+# Markdown 配置
+markdown: kramdown
+kramdown:
+  input: GFM
