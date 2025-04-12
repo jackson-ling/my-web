@@ -1,1 +1,1 @@
-# 基于vitepress搭建的个人博客网站，利用githhub pages部署托管实现网站上线
+# 基于vitepress搭建的个人博客网站，使用github pages部署托管实现网站的上线，有兴趣的小伙伴可以fork下来自己跑和修改，搭建个人的博客网站并上线
